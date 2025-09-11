@@ -1,4 +1,4 @@
-/* Conteúdo de style.css - Tema Suave e Acolhedor (Light Mode) */
+/* Conteúdo de style.css - Tema Suave e Acolhedor (CORRIGIDO) */
 
 :root {
     --primary-color: #007BFF; /* Azul principal */
@@ -25,14 +25,10 @@
 body {
     font-family: 'Poppins', sans-serif;
     margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
+    padding: 20px 0; /* Adiciona um respiro em cima e embaixo */
     background-color: var(--bg-light); /* Fundo suave */
     color: var(--text-dark);
-    overflow-x: hidden; /* Evita rolagem horizontal indesejada */
+    /* As linhas problemáticas de display:flex foram removidas daqui */
 }
 
 .container {
@@ -42,8 +38,8 @@ body {
     box-shadow: 0 10px 30px var(--card-shadow);
     text-align: center;
     max-width: 500px; /* Largura mais compacta para mobile-first */
-    width: 95%;
-    margin: 20px auto; /* Adicionado margem superior/inferior para rolagem */
+    width: 90%; /* Ajustado para 90% para melhor margem */
+    margin: 0 auto; /* Centraliza horizontalmente */
     animation: fadeIn 0.8s ease-out;
 }
 
@@ -53,17 +49,17 @@ body {
 }
 
 .main-logo-simple {
-    max-width: 200px; /* Tamanho da logo na página inicial */
+    max-width: 200px;
     height: auto;
     margin-bottom: 25px;
 }
 
 .main-logo-simple.small-logo {
-    max-width: 150px; /* Logo menor nas páginas internas */
+    max-width: 150px;
     margin-bottom: 15px;
 }
 
-h1 { /* Não usado diretamente, mas mantido para fallback */
+h1 {
     color: var(--primary-color);
     font-size: 2.5em;
     margin-bottom: 15px;
@@ -84,7 +80,7 @@ h1 { /* Não usado diretamente, mas mantido para fallback */
 /* Chargers Grid */
 .chargers-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); /* Mais compacto */
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
     gap: 15px;
     margin-top: 20px;
 }
@@ -100,8 +96,8 @@ h1 { /* Não usado diretamente, mas mantido para fallback */
     cursor: pointer;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     box-shadow: 0 5px 15px var(--card-shadow);
-    border: 1px solid rgba(0, 0, 0, 0.05); /* Borda muito sutil */
-    min-height: 150px; /* Altura mínima para melhor proporção */
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    min-height: 150px;
 }
 
 .charger-card:hover {
@@ -110,7 +106,7 @@ h1 { /* Não usado diretamente, mas mantido para fallback */
 }
 
 .charger-card.available {
-    border-color: var(--success-color); /* Borda verde */
+    border-color: var(--success-color);
 }
 .charger-card.available .status-indicator {
     background-color: var(--success-color);
@@ -119,20 +115,20 @@ h1 { /* Não usado diretamente, mas mantido para fallback */
 .charger-card.occupied {
     opacity: 0.7;
     cursor: not-allowed;
-    border-color: var(--secondary-color); /* Borda vermelha */
+    border-color: var(--secondary-color);
 }
 .charger-card.occupied:hover {
     transform: none;
-    box-shadow: 0 5px 15px var(--card-shadow); /* Sem sombra de hover no ocupado */
+    box-shadow: 0 5px 15px var(--card-shadow);
 }
 .charger-card.occupied .status-indicator {
     background-color: var(--secondary-color);
 }
 
 .charger-icon {
-    font-size: 2.5em; /* Ícones menores para proporção */
+    font-size: 2.5em;
     margin-bottom: 10px;
-    color: var(--primary-color); /* Cor do raio da logo */
+    color: var(--primary-color);
 }
 
 .charger-number {
@@ -156,7 +152,7 @@ h1 { /* Não usado diretamente, mas mantido para fallback */
     width: 10px;
     height: 10px;
     border-radius: 50%;
-    background-color: var(--text-muted); /* Cinza padrão */
+    background-color: var(--text-muted);
 }
 
 /* --- Estilos para a Tela de Seleção de Tempo --- */
@@ -176,7 +172,7 @@ h1 { /* Não usado diretamente, mas mantido para fallback */
 .time-options {
     display: flex;
     flex-direction: column;
-    gap: 15px; /* Espaçamento menor */
+    gap: 15px;
     margin: 30px 0;
     width: 100%;
 }
@@ -185,8 +181,8 @@ h1 { /* Não usado diretamente, mas mantido para fallback */
     background-color: var(--button-bg);
     color: var(--button-text);
     border: none;
-    border-radius: 12px; /* Cantos mais arredondados */
-    padding: 15px 20px; /* Preenchimento ajustado */
+    border-radius: 12px;
+    padding: 15px 20px;
     font-family: 'Poppins', sans-serif;
     font-size: 1.2em;
     font-weight: 600;
@@ -204,7 +200,7 @@ h1 { /* Não usado diretamente, mas mantido para fallback */
 }
 
 .time-option-btn .price {
-    background-color: rgba(255, 255, 255, 0.2); /* Fundo claro para o preço */
+    background-color: rgba(255, 255, 255, 0.2);
     padding: 5px 10px;
     border-radius: 8px;
     font-size: 0.8em;
@@ -239,7 +235,7 @@ h1 { /* Não usado diretamente, mas mantido para fallback */
 
 .time-option-btn.advantage-btn:hover {
     background-color: var(--advantage-bg);
-    filter: brightness(0.9);
+    filter: brightness(0.95);
     box-shadow: 0 6px 15px rgba(255, 193, 7, 0.6);
 }
 
@@ -256,7 +252,7 @@ h1 { /* Não usado diretamente, mas mantido para fallback */
 }
 
 .qr-code-container {
-    background-color: var(--card-bg); /* Fundo branco para QR */
+    background-color: var(--card-bg);
     padding: 15px;
     border-radius: 10px;
     display: inline-block;
@@ -265,19 +261,19 @@ h1 { /* Não usado diretamente, mas mantido para fallback */
 
 .qr-code-container img {
     display: block;
-    width: 200px; /* QR Code menor */
+    width: 200px;
     height: 200px;
 }
 
 .timer {
     font-size: 1.1em;
-    color: var(--secondary-color); /* Cor de alerta para o timer */
+    color: var(--secondary-color);
     margin-top: 20px;
     font-weight: 600;
 }
 
 .simulate-btn {
-    background-color: var(--success-color); /* Botão de sucesso verde */
+    background-color: var(--success-color);
     color: var(--button-text);
     border: none;
     border-radius: 10px;
@@ -297,7 +293,7 @@ h1 { /* Não usado diretamente, mas mantido para fallback */
 }
 
 .confirmation-icon {
-    font-size: 4em; /* Ícone menor */
+    font-size: 4em;
     color: var(--success-color);
     background-color: rgba(40, 167, 69, 0.1);
     width: 100px;
@@ -316,9 +312,12 @@ h1 { /* Não usado diretamente, mas mantido para fallback */
 
 /* --- Responsividade (Media Queries) --- */
 @media (max-width: 600px) {
+    body {
+        padding: 10px 0;
+    }
     .container {
         padding: 20px;
-        margin: 10px auto; /* Menos margem em telas pequenas */
+        width: 90%;
     }
     .main-logo-simple {
         max-width: 180px;
@@ -336,8 +335,8 @@ h1 { /* Não usado diretamente, mas mantido para fallback */
         margin-bottom: 20px;
     }
     .chargers-grid {
-        grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
-        gap: 10px;
+        grid-template-columns: repeat(2, 1fr); /* Força 2 colunas em telas menores */
+        gap: 15px;
     }
     .charger-card {
         padding: 15px;
@@ -361,8 +360,8 @@ h1 { /* Não usado diretamente, mas mantido para fallback */
         padding: 12px 15px;
     }
     .qr-code-container img {
-        width: 150px;
-        height: 150px;
+        width: 180px;
+        height: 180px;
     }
     .simulate-btn {
         padding: 10px 20px;
