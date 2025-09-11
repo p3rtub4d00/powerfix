@@ -1,4 +1,4 @@
-/* Conteúdo de style.css - Tema Suave e Acolhedor (CORRIGIDO) */
+/* Conteúdo de style.css - Tema Suave e Acolhedor (Layout Tablet) */
 
 :root {
     --primary-color: #007BFF; /* Azul principal */
@@ -25,21 +25,20 @@
 body {
     font-family: 'Poppins', sans-serif;
     margin: 0;
-    padding: 20px 0; /* Adiciona um respiro em cima e embaixo */
-    background-color: var(--bg-light); /* Fundo suave */
+    padding: 20px 0;
+    background-color: var(--bg-light);
     color: var(--text-dark);
-    /* As linhas problemáticas de display:flex foram removidas daqui */
 }
 
 .container {
-    background-color: var(--card-bg); /* Fundo branco dos elementos */
+    background-color: var(--card-bg);
     border-radius: 20px;
     padding: 30px;
     box-shadow: 0 10px 30px var(--card-shadow);
     text-align: center;
-    max-width: 500px; /* Largura mais compacta para mobile-first */
-    width: 90%; /* Ajustado para 90% para melhor margem */
-    margin: 0 auto; /* Centraliza horizontalmente */
+    max-width: 500px; /* Largura padrão para mobile */
+    width: 90%;
+    margin: 0 auto;
     animation: fadeIn 0.8s ease-out;
 }
 
@@ -49,19 +48,14 @@ body {
 }
 
 .main-logo-simple {
-    max-width: 200px;
+    max-width: 200px; /* Tamanho padrão da logo */
     height: auto;
     margin-bottom: 25px;
+    transition: max-width 0.3s ease;
 }
 
 .main-logo-simple.small-logo {
     max-width: 150px;
-    margin-bottom: 15px;
-}
-
-h1 {
-    color: var(--primary-color);
-    font-size: 2.5em;
     margin-bottom: 15px;
 }
 
@@ -80,7 +74,7 @@ h1 {
 /* Chargers Grid */
 .chargers-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    grid-template-columns: repeat(2, 1fr); /* Padrão de 2 colunas para mobile */
     gap: 15px;
     margin-top: 20px;
 }
@@ -155,7 +149,7 @@ h1 {
     background-color: var(--text-muted);
 }
 
-/* --- Estilos para a Tela de Seleção de Tempo --- */
+/* --- Estilos para a Tela de Seleção de Tempo e outras --- */
 
 .selection-title {
     font-size: 1.8em;
@@ -226,7 +220,6 @@ h1 {
     border-color: var(--primary-color);
 }
 
-/* --- Estilos para o botão Vantagem --- */
 .time-option-btn.advantage-btn {
     background-color: var(--advantage-bg);
     color: var(--advantage-text);
@@ -244,8 +237,6 @@ h1 {
     color: var(--advantage-text);
 }
 
-
-/* --- Estilos para a Tela de Pagamento e Confirmação --- */
 
 .payment-details {
     margin: 25px 0;
@@ -310,65 +301,20 @@ h1 {
     color: var(--text-dark);
 }
 
-/* --- Responsividade (Media Queries) --- */
-@media (max-width: 600px) {
-    body {
-        padding: 10px 0;
-    }
+
+/* --- Media Queries para Telas Maiores (TABLET) --- */
+@media (min-width: 768px) {
     .container {
-        padding: 20px;
-        width: 90%;
+        max-width: 800px; /* Container mais largo */
+        padding: 40px;
     }
+
     .main-logo-simple {
-        max-width: 180px;
-        margin-bottom: 20px;
+        max-width: 280px; /* Logo maior */
     }
-    .main-logo-simple.small-logo {
-        max-width: 120px;
-        margin-bottom: 10px;
-    }
-    .subtitle, .instruction {
-        font-size: 1em;
-        margin-bottom: 10px;
-    }
-    .instruction {
-        margin-bottom: 20px;
-    }
+
     .chargers-grid {
-        grid-template-columns: repeat(2, 1fr); /* Força 2 colunas em telas menores */
-        gap: 15px;
-    }
-    .charger-card {
-        padding: 15px;
-        min-height: 130px;
-    }
-    .charger-icon {
-        font-size: 2em;
-    }
-    .charger-number {
-        font-size: 0.9em;
-    }
-    .status-text {
-        font-size: 0.75em;
-        gap: 5px;
-    }
-    .selection-title {
-        font-size: 1.5em;
-    }
-    .time-option-btn {
-        font-size: 1em;
-        padding: 12px 15px;
-    }
-    .qr-code-container img {
-        width: 180px;
-        height: 180px;
-    }
-    .simulate-btn {
-        padding: 10px 20px;
-        font-size: 0.9em;
-    }
-    .back-btn {
-        font-size: 0.85em;
-        padding: 8px 12px;
+        grid-template-columns: repeat(3, 1fr); /* 3 colunas */
+        gap: 25px; /* Mais espaço entre os cards */
     }
 }
