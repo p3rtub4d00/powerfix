@@ -329,3 +329,20 @@ h1 { /* Mantido apenas para compatibilidade, mas agora usamos a imagem da logo *
     .charger-number { font-size: 0.9em; }
     .status-text { font-size: 0.75em; }
 }
+
+/* --- Estilos para o botão Vantagem --- */
+
+.time-option-btn.advantage-btn {
+    /* Um gradiente diferente para destacar a melhor oferta */
+    background: linear-gradient(145deg, #FFD700, #FFA500); 
+    color: #333; /* Texto mais escuro para melhor contraste */
+    font-weight: 700;
+}
+
+.time-option-btn.advantage-btn:hover {
+    box-shadow: 0 0 30px #FFD700; /* Brilho dourado no hover */
+}
+
+.time-option-btn.advantage-btn .price {
+    color: white; /* Cor do preço se destaca no fundo escuro */
+}
