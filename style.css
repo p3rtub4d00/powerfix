@@ -1,4 +1,4 @@
-/* Conteúdo de style.css - Tema Suave e Acolhedor (Layout Tablet) */
+/* Conteúdo de style.css - Tema Suave e Acolhedor (Ajuste Fino) */
 
 :root {
     --primary-color: #007BFF; /* Azul principal */
@@ -305,12 +305,12 @@ body {
 /* --- Media Queries para Telas Maiores (TABLET) --- */
 @media (min-width: 768px) {
     .container {
-        max-width: 800px; /* Container mais largo */
+        max-width: 950px; /* <<-- AUMENTADO PARA USAR MAIS ESPAÇO */
         padding: 40px;
     }
 
     .main-logo-simple {
-        max-width: 280px; /* Logo maior */
+        max-width: 350px; /* <<-- LOGO MAIOR */
     }
 
     .chargers-grid {
