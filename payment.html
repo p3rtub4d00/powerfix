@@ -11,7 +11,7 @@
 </head>
 <body>
     <div class="container">
-        <h2 class="selection-title">Efetue o Pagamento</h2>
+        <img src="logo-powerfix.png" alt="Power Fix Logo" class="main-logo-flat small-logo"> <h2 class="selection-title">Efetue o Pagamento</h2>
         <p class="subtitle">Escaneie o código abaixo para iniciar a recarga.</p>
 
         <div class="payment-details">
@@ -28,11 +28,36 @@
     </div>
 
     <script>
-        document.getElementById('simulate-payment-btn').addEventListener('click', function() {
-            // Em uma aplicação real, aqui teríamos a confirmação do Mercado Pago
-            alert('Pagamento simulado com sucesso! Redirecionando...');
-            // Redireciona para a tela de confirmação
-            window.location.href = 'confirmation.html';
+        document.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            const time = params.get('time');
+
+            // Implementar temporizador de 5 minutos
+            let countdownSeconds = 5 * 60; // 5 minutos
+            const countdownElement = document.getElementById('countdown');
+
+            const updateCountdown = () => {
+                const minutes = Math.floor(countdownSeconds / 60);
+                const seconds = countdownSeconds % 60;
+                countdownElement.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+
+                if (countdownSeconds <= 0) {
+                    clearInterval(countdownInterval);
+                    alert('Tempo para pagamento esgotado! Por favor, tente novamente.');
+                    window.location.href = 'index.html'; // Redireciona de volta ao início
+                } else {
+                    countdownSeconds--;
+                }
+            };
+
+            const countdownInterval = setInterval(updateCountdown, 1000);
+            updateCountdown(); // Chama uma vez imediatamente para exibir o tempo
+
+            document.getElementById('simulate-payment-btn').addEventListener('click', function() {
+                clearInterval(countdownInterval); // Para o timer ao simular pagamento
+                alert('Pagamento simulado com sucesso! Redirecionando...');
+                window.location.href = `confirmation.html?time=${time}`;
+            });
         });
     </script>
 </body>
