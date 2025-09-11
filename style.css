@@ -1,19 +1,25 @@
-/* Conteúdo de style.css - Tema Power Fix (Azul/Cinza) */
+/* Conteúdo de style.css - Tema Suave e Acolhedor (Light Mode) */
 
 :root {
-    --primary-color: #007BFF; /* Azul principal da logo */
-    --secondary-color: #DC3545; /* Vermelho para ocupado/erros */
-    --accent-color: #6C757D; /* Cinza claro da logo */
-    --text-color-dark: #333;
-    --text-color-light: #f8f9fa; /* Branco levemente off-white */
-    --bg-dark: #121212; /* Fundo escuro profundo */
-    --bg-light: #f0f2f5;
+    --primary-color: #007BFF; /* Azul principal */
+    --secondary-color: #DC3545; /* Vermelho para ocupado */
+    --success-color: #28A745; /* Verde para disponível/sucesso */
+    --accent-color: #6C757D; /* Cinza para textos secundários */
+    
+    --bg-light: #F8F9FA; /* Fundo off-white */
+    --text-dark: #212529; /* Texto principal escuro */
+    --text-muted: #6C757D; /* Texto secundário */
 
-    /* Cores adicionais para destaque e consistência */
-    --button-gradient-start: #0056b3; /* Azul mais escuro para gradiente */
-    --button-gradient-end: #007BFF;
-    --advantage-gradient-start: #ffc107; /* Amarelo/Dourado para vantagem */
-    --advantage-gradient-end: #ff8c00;
+    --card-bg: #FFFFFF; /* Fundo dos cards */
+    --card-shadow: rgba(0, 0, 0, 0.1);
+    --hover-shadow: rgba(0, 123, 255, 0.2); /* Sombra azul no hover */
+
+    --button-bg: #007BFF;
+    --button-text: #FFFFFF;
+    --button-hover-bg: #0056b3;
+
+    --advantage-bg: #FFC107; /* Amarelo/Dourado para vantagem */
+    --advantage-text: #212529; /* Texto escuro no dourado */
 }
 
 body {
@@ -24,125 +30,122 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: linear-gradient(135deg, var(--bg-dark), #000000); /* Fundo bem escuro */
-    color: var(--text-color-light);
-    overflow: hidden;
+    background-color: var(--bg-light); /* Fundo suave */
+    color: var(--text-dark);
+    overflow-x: hidden; /* Evita rolagem horizontal indesejada */
 }
 
 .container {
-    background-color: rgba(255, 255, 255, 0.08); /* Fundo semi-transparente escuro */
+    background-color: var(--card-bg); /* Fundo branco dos elementos */
     border-radius: 20px;
-    padding: 40px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    padding: 30px;
+    box-shadow: 0 10px 30px var(--card-shadow);
     text-align: center;
-    max-width: 900px;
+    max-width: 500px; /* Largura mais compacta para mobile-first */
     width: 95%;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.15); /* Borda sutil */
-    animation: fadeIn 1s ease-out;
+    margin: 20px auto; /* Adicionado margem superior/inferior para rolagem */
+    animation: fadeIn 0.8s ease-out;
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-20px); }
+    from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
 }
 
-.main-logo-flat {
-    max-width: 280px; /* Tamanho ajustado da logo */
+.main-logo-simple {
+    max-width: 200px; /* Tamanho da logo na página inicial */
     height: auto;
     margin-bottom: 25px;
-    filter: drop-shadow(0 0 8px rgba(0, 123, 255, 0.5)); /* Sombra para realçar */
 }
 
-.main-logo-flat.small-logo { /* Para as páginas internas */
-    max-width: 200px;
+.main-logo-simple.small-logo {
+    max-width: 150px; /* Logo menor nas páginas internas */
     margin-bottom: 15px;
 }
 
-h1 { /* Mantido apenas para compatibilidade */
+h1 { /* Não usado diretamente, mas mantido para fallback */
     color: var(--primary-color);
-    font-size: 3.5em;
-    margin-bottom: 10px;
-    letter-spacing: 2px;
-    text-shadow: 0 0 10px rgba(0, 123, 255, 0.4);
+    font-size: 2.5em;
+    margin-bottom: 15px;
 }
 
-.subtitle {
-    font-size: 1.2em;
-    color: rgba(255, 255, 255, 0.85);
-    margin-bottom: 40px;
+.subtitle, .instruction {
+    font-size: 1.1em;
+    color: var(--text-dark);
+    margin-bottom: 15px;
 }
 
+.instruction {
+    font-size: 0.95em;
+    color: var(--text-muted);
+    margin-bottom: 30px;
+}
+
+/* Chargers Grid */
 .chargers-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 25px;
-    margin-top: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); /* Mais compacto */
+    gap: 15px;
+    margin-top: 20px;
 }
 
 .charger-card {
-    background-color: rgba(255, 255, 255, 0.05); /* Fundo mais sutil */
+    background-color: var(--card-bg);
     border-radius: 15px;
-    padding: 25px 15px;
+    padding: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
     cursor: pointer;
-    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    min-height: 180px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 5px 15px var(--card-shadow);
+    border: 1px solid rgba(0, 0, 0, 0.05); /* Borda muito sutil */
+    min-height: 150px; /* Altura mínima para melhor proporção */
 }
 
 .charger-card:hover {
-    transform: translateY(-8px) scale(1.03);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
-    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px var(--hover-shadow);
 }
 
 .charger-card.available {
-    border-color: var(--primary-color);
-    box-shadow: 0 0 20px rgba(0, 123, 255, 0.5); /* Brilho azul */
+    border-color: var(--success-color); /* Borda verde */
 }
 .charger-card.available .status-indicator {
-    background-color: var(--primary-color);
+    background-color: var(--success-color);
 }
 
 .charger-card.occupied {
     opacity: 0.7;
     cursor: not-allowed;
-    border-color: var(--secondary-color);
-    box-shadow: 0 0 15px rgba(220, 53, 69, 0.4); /* Brilho vermelho */
+    border-color: var(--secondary-color); /* Borda vermelha */
 }
 .charger-card.occupied:hover {
     transform: none;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-    background-color: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 5px 15px var(--card-shadow); /* Sem sombra de hover no ocupado */
 }
 .charger-card.occupied .status-indicator {
     background-color: var(--secondary-color);
 }
 
 .charger-icon {
-    font-size: 3.5em;
+    font-size: 2.5em; /* Ícones menores para proporção */
     margin-bottom: 10px;
-    color: var(--primary-color); /* Ícone azul */
-    text-shadow: 0 0 8px rgba(0, 123, 255, 0.4);
+    color: var(--primary-color); /* Cor do raio da logo */
 }
 
 .charger-number {
-    font-size: 1.3em;
-    font-weight: 700;
-    color: var(--text-color-light);
+    font-size: 1.1em;
+    font-weight: 600;
+    color: var(--text-dark);
     margin-bottom: 5px;
-    word-break: break-word;
 }
 
 .status-text {
-    font-size: 0.9em;
-    font-weight: 600;
-    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.85em;
+    font-weight: 500;
+    color: var(--text-muted);
     display: flex;
     align-items: center;
     gap: 8px;
@@ -150,201 +153,223 @@ h1 { /* Mantido apenas para compatibilidade */
 }
 
 .status-indicator {
-    width: 12px;
-    height: 12px;
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
-    background-color: grey;
-    box-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
+    background-color: var(--text-muted); /* Cinza padrão */
 }
 
 /* --- Estilos para a Tela de Seleção de Tempo --- */
 
 .selection-title {
-    font-size: 2em;
+    font-size: 1.8em;
     font-weight: 600;
-    color: var(--text-color-light);
+    color: var(--text-dark);
     margin-bottom: 10px;
 }
 
 .charger-highlight {
-    color: var(--primary-color); /* Destaque azul */
+    color: var(--primary-color);
     font-weight: 700;
 }
 
 .time-options {
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    margin: 40px 0;
+    gap: 15px; /* Espaçamento menor */
+    margin: 30px 0;
     width: 100%;
-    max-width: 400px;
-    margin-left: auto;
-    margin-right: auto;
 }
 
 .time-option-btn {
-    background: linear-gradient(145deg, var(--button-gradient-start), var(--button-gradient-end));
-    color: var(--text-color-light);
+    background-color: var(--button-bg);
+    color: var(--button-text);
     border: none;
-    border-radius: 15px;
-    padding: 20px;
+    border-radius: 12px; /* Cantos mais arredondados */
+    padding: 15px 20px; /* Preenchimento ajustado */
     font-family: 'Poppins', sans-serif;
-    font-size: 1.5em;
+    font-size: 1.2em;
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    border: 1px solid rgba(0, 123, 255, 0.4);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 .time-option-btn:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(0, 123, 255, 0.4);
-    filter: brightness(1.1);
+    background-color: var(--button-hover-bg);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
 }
 
 .time-option-btn .price {
-    background-color: rgba(0, 0, 0, 0.2);
-    padding: 8px 15px;
-    border-radius: 10px;
-    font-size: 0.9em;
+    background-color: rgba(255, 255, 255, 0.2); /* Fundo claro para o preço */
+    padding: 5px 10px;
+    border-radius: 8px;
+    font-size: 0.8em;
+    color: var(--button-text);
 }
 
 .back-btn {
     background: none;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    color: rgba(255, 255, 255, 0.7);
-    padding: 10px 20px;
+    border: 1px solid var(--accent-color);
+    color: var(--accent-color);
+    padding: 10px 15px;
     border-radius: 10px;
     cursor: pointer;
     font-family: 'Poppins', sans-serif;
-    font-size: 1em;
-    margin-top: 30px;
-    transition: all 0.3s ease;
+    font-size: 0.9em;
+    margin-top: 25px;
+    transition: all 0.2s ease;
 }
 
 .back-btn:hover {
-    background-color: rgba(255, 255, 255, 0.05);
-    color: var(--text-color-light);
-    box-shadow: 0 0 10px rgba(0, 123, 255, 0.3);
+    background-color: rgba(0, 0, 0, 0.05);
+    color: var(--primary-color);
+    border-color: var(--primary-color);
 }
 
 /* --- Estilos para o botão Vantagem --- */
 .time-option-btn.advantage-btn {
-    background: linear-gradient(145deg, var(--advantage-gradient-start), var(--advantage-gradient-end));
-    color: var(--text-color-dark); /* Texto escuro para contraste no dourado */
-    font-weight: 700;
-    border: 1px solid rgba(255, 193, 7, 0.6);
+    background-color: var(--advantage-bg);
+    color: var(--advantage-text);
+    box-shadow: 0 4px 10px rgba(255, 193, 7, 0.4);
 }
 
 .time-option-btn.advantage-btn:hover {
-    box-shadow: 0 0 30px rgba(255, 193, 7, 0.6);
+    background-color: var(--advantage-bg);
+    filter: brightness(0.9);
+    box-shadow: 0 6px 15px rgba(255, 193, 7, 0.6);
 }
 
 .time-option-btn.advantage-btn .price {
-    background-color: rgba(0, 0, 0, 0.15);
-    color: var(--text-color-light);
+    background-color: rgba(0, 0, 0, 0.1);
+    color: var(--advantage-text);
 }
 
 
 /* --- Estilos para a Tela de Pagamento e Confirmação --- */
 
 .payment-details {
-    margin: 30px 0;
+    margin: 25px 0;
 }
 
 .qr-code-container {
-    background-color: white; /* Mantido branco para contraste com QR Code */
-    padding: 20px;
-    border-radius: 15px;
+    background-color: var(--card-bg); /* Fundo branco para QR */
+    padding: 15px;
+    border-radius: 10px;
     display: inline-block;
-    box-shadow: 0 0 25px rgba(0, 123, 255, 0.4); /* Brilho azul */
+    box-shadow: 0 5px 15px var(--card-shadow);
 }
 
 .qr-code-container img {
     display: block;
-    width: 250px;
-    height: 250px;
+    width: 200px; /* QR Code menor */
+    height: 200px;
 }
 
 .timer {
     font-size: 1.1em;
-    color: var(--primary-color);
+    color: var(--secondary-color); /* Cor de alerta para o timer */
     margin-top: 20px;
+    font-weight: 600;
 }
 
 .simulate-btn {
-    background: linear-gradient(145deg, var(--button-gradient-start), var(--button-gradient-end));
-    color: var(--text-color-light);
+    background-color: var(--success-color); /* Botão de sucesso verde */
+    color: var(--button-text);
     border: none;
     border-radius: 10px;
-    padding: 15px 30px;
+    padding: 12px 25px;
     font-family: 'Poppins', sans-serif;
-    font-size: 1.1em;
+    font-size: 1em;
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.3s ease;
-    margin-top: 15px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
+    margin-top: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 .simulate-btn:hover {
-    transform: translateY(-3px);
-    filter: brightness(1.1);
-    box-shadow: 0 0 20px rgba(0, 123, 255, 0.5);
+    background-color: #218838;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
 }
 
 .confirmation-icon {
-    font-size: 5em;
-    color: var(--primary-color);
-    background-color: rgba(0, 123, 255, 0.1);
-    width: 120px;
-    height: 120px;
-    line-height: 120px;
+    font-size: 4em; /* Ícone menor */
+    color: var(--success-color);
+    background-color: rgba(40, 167, 69, 0.1);
+    width: 100px;
+    height: 100px;
+    line-height: 100px;
     border-radius: 50%;
     margin: 20px auto;
-    border: 2px solid var(--primary-color);
-    box-shadow: 0 0 25px rgba(0, 123, 255, 0.5);
+    border: 2px solid var(--success-color);
 }
 
 .countdown-timer {
-    margin-top: 30px;
-    font-size: 1.5em;
+    margin-top: 20px;
+    font-size: 1.2em;
+    color: var(--text-dark);
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .main-logo-flat {
-        max-width: 200px;
+/* --- Responsividade (Media Queries) --- */
+@media (max-width: 600px) {
+    .container {
+        padding: 20px;
+        margin: 10px auto; /* Menos margem em telas pequenas */
     }
-    .main-logo-flat.small-logo {
-        max-width: 150px;
-    }
-    h1 { font-size: 2.5em; }
-    .subtitle { font-size: 1em; }
-    .container { padding: 30px; }
-    .chargers-grid { grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 15px; }
-    .charger-card { padding: 20px 10px; min-height: 160px; }
-    .charger-icon { font-size: 2.8em; }
-    .charger-number { font-size: 1em; }
-    .status-text { font-size: 0.8em; gap: 5px; }
-    .status-indicator { width: 10px; height: 10px; }
-
-    .selection-title { font-size: 1.5em; }
-    .time-option-btn { font-size: 1.2em; padding: 15px; }
-    .qr-code-container img { width: 200px; height: 200px; }
-}
-
-@media (max-width: 480px) {
-    .main-logo-flat {
+    .main-logo-simple {
         max-width: 180px;
+        margin-bottom: 20px;
     }
-    .main-logo-flat.small-logo {
+    .main-logo-simple.small-logo {
         max-width: 120px;
+        margin-bottom: 10px;
     }
-    .charger-number { font-size: 0.9em; }
-    .status-text { font-size: 0.75em; }
+    .subtitle, .instruction {
+        font-size: 1em;
+        margin-bottom: 10px;
+    }
+    .instruction {
+        margin-bottom: 20px;
+    }
+    .chargers-grid {
+        grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+        gap: 10px;
+    }
+    .charger-card {
+        padding: 15px;
+        min-height: 130px;
+    }
+    .charger-icon {
+        font-size: 2em;
+    }
+    .charger-number {
+        font-size: 0.9em;
+    }
+    .status-text {
+        font-size: 0.75em;
+        gap: 5px;
+    }
+    .selection-title {
+        font-size: 1.5em;
+    }
+    .time-option-btn {
+        font-size: 1em;
+        padding: 12px 15px;
+    }
+    .qr-code-container img {
+        width: 150px;
+        height: 150px;
+    }
+    .simulate-btn {
+        padding: 10px 20px;
+        font-size: 0.9em;
+    }
+    .back-btn {
+        font-size: 0.85em;
+        padding: 8px 12px;
+    }
 }
