@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Power Fix - Pagamento</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h2 class="selection-title">Efetue o Pagamento</h2>
+        <p class="subtitle">Escaneie o código abaixo para iniciar a recarga.</p>
+
+        <div class="payment-details">
+            <div class="qr-code-container">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=PowerFix-Simulado" alt="QR Code de Pagamento">
+            </div>
+            <p class="timer">Você tem <span id="countdown">5:00</span> para realizar o pagamento.</p>
+        </div>
+
+        <button id="simulate-payment-btn" class="simulate-btn">Simular Pagamento Aprovado</button>
+        
+        <button class="back-btn" onclick="window.history.back();">← Voltar</button>
+
+    </div>
+
+    <script>
+        document.getElementById('simulate-payment-btn').addEventListener('click', function() {
+            // Em uma aplicação real, aqui teríamos a confirmação do Mercado Pago
+            alert('Pagamento simulado com sucesso! Redirecionando...');
+            // Redireciona para a tela de confirmação
+            window.location.href = 'confirmation.html';
+        });
+    </script>
+</body>
+</html>
