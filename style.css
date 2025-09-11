@@ -1,13 +1,18 @@
-/* Conteúdo de style.css - Versão Corrigida e Completa */
+/* Conteúdo de style.css - Tema Neon */
 
 :root {
-    --primary-color: #4CAF50; /* Verde vibrante para disponível */
-    --secondary-color: #f44336; /* Vermelho para ocupado */
-    --accent-color: #2196F3; /* Azul para destaque */
+    --primary-color: #00FFC2; /* Verde água neon para disponível */
+    --secondary-color: #FF6B6B; /* Rosa/Vermelho para ocupado */
+    --accent-color: #00BFFF; /* Azul vibrante neon para destaque */
     --text-color-dark: #333;
     --text-color-light: #fff;
-    --bg-dark: #1a1a2e;
+    --bg-dark: #0a0a1a; /* Fundo mais escuro para realçar o neon */
     --bg-light: #f0f2f5;
+
+    /* Cores de brilho neon */
+    --glow-primary: #00FFC2;
+    --glow-secondary: #FF6B6B;
+    --glow-accent: #00BFFF;
 }
 
 body {
@@ -18,21 +23,21 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: linear-gradient(135deg, var(--bg-dark), #0f0a20);
+    background: linear-gradient(135deg, var(--bg-dark), #05050f); /* Fundo ainda mais escuro */
     color: var(--text-color-light);
     overflow: hidden;
 }
 
 .container {
-    background-color: rgba(255, 255, 255, 0.05);
+    background-color: rgba(0, 0, 0, 0.2); /* Fundo semi-transparente mais escuro */
     border-radius: 20px;
     padding: 40px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 40px rgba(0, 255, 194, 0.2); /* Brilho leve neon no container */
     text-align: center;
     max-width: 900px;
     width: 95%;
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(0, 255, 194, 0.3); /* Borda neon sutil */
     animation: fadeIn 1s ease-out;
 }
 
@@ -41,18 +46,26 @@ body {
     to { opacity: 1; transform: translateY(0); }
 }
 
-h1 {
+.main-logo {
+    max-width: 300px; /* Ajuste o tamanho da logo conforme necessário */
+    height: auto;
+    margin-bottom: 20px;
+    filter: drop-shadow(0 0 15px var(--glow-primary)); /* Efeito de brilho na logo */
+}
+
+h1 { /* Mantido apenas para compatibilidade, mas agora usamos a imagem da logo */
     color: var(--primary-color);
     font-size: 3.5em;
     margin-bottom: 10px;
     letter-spacing: 2px;
-    text-shadow: 0 0 10px rgba(76, 175, 80, 0.5);
+    text-shadow: 0 0 15px var(--glow-primary), 0 0 30px rgba(0, 255, 194, 0.4); /* Brilho neon no texto */
 }
 
 .subtitle {
     font-size: 1.2em;
-    color: rgba(255, 255, 255, 0.8);
+    color: rgba(255, 255, 255, 0.9); /* Cor mais clara para o subtítulo */
     margin-bottom: 40px;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
 }
 
 .chargers-grid {
@@ -63,7 +76,7 @@ h1 {
 }
 
 .charger-card {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(255, 255, 255, 0.08); /* Fundo mais escuro para os cards */
     border-radius: 15px;
     padding: 25px 15px;
     display: flex;
@@ -72,52 +85,56 @@ h1 {
     justify-content: space-between;
     cursor: pointer;
     transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.05);
     min-height: 180px;
 }
 
 .charger-card:hover {
     transform: translateY(-8px) scale(1.03);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-    background-color: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 0 30px var(--glow-accent); /* Brilho neon no hover */
+    background-color: rgba(255, 255, 255, 0.12);
 }
 
 .charger-card.available {
     border-color: var(--primary-color);
-    box-shadow: 0 0 20px rgba(76, 175, 80, 0.4);
+    box-shadow: 0 0 25px var(--glow-primary), 0 0 10px rgba(0, 255, 194, 0.6); /* Brilho neon mais intenso */
 }
 .charger-card.available .status-indicator {
     background-color: var(--primary-color);
+    box-shadow: 0 0 10px var(--glow-primary); /* Brilho no indicador */
 }
 
 .charger-card.occupied {
-    opacity: 0.6;
+    opacity: 0.7; /* Ligeiramente mais opaco */
     cursor: not-allowed;
     border-color: var(--secondary-color);
-    box-shadow: 0 0 15px rgba(244, 67, 54, 0.3);
+    box-shadow: 0 0 15px var(--glow-secondary); /* Brilho neon vermelho */
 }
 .charger-card.occupied:hover {
     transform: none;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    background-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4), 0 0 10px var(--glow-secondary); /* Mantém brilho sutil */
+    background-color: rgba(255, 255, 255, 0.08);
 }
 .charger-card.occupied .status-indicator {
     background-color: var(--secondary-color);
+    box-shadow: 0 0 10px var(--glow-secondary);
 }
 
 .charger-icon {
     font-size: 3.5em;
     margin-bottom: 10px;
     color: var(--accent-color);
+    text-shadow: 0 0 10px var(--glow-accent); /* Brilho nos ícones */
 }
 
 .charger-number {
-    font-size: 1.3em; /* <-- CORREÇÃO APLICADA */
+    font-size: 1.3em;
     font-weight: 700;
     color: var(--text-color-light);
     margin-bottom: 5px;
     word-break: break-word;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.4);
 }
 
 .status-text {
@@ -128,6 +145,7 @@ h1 {
     align-items: center;
     gap: 8px;
     margin-top: 5px;
+    text-shadow: 0 0 3px rgba(255, 255, 255, 0.2);
 }
 
 .status-indicator {
@@ -138,24 +156,6 @@ h1 {
     box-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    h1 { font-size: 2.5em; }
-    .subtitle { font-size: 1em; }
-    .container { padding: 30px; }
-    .chargers-grid { grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 15px; }
-    .charger-card { padding: 20px 10px; min-height: 160px; }
-    .charger-icon { font-size: 2.8em; }
-    .charger-number { font-size: 1em; } /* <-- CORREÇÃO APLICADA */
-    .status-text { font-size: 0.8em; gap: 5px; }
-    .status-indicator { width: 10px; height: 10px; }
-}
-
-@media (max-width: 480px) {
-    .charger-number { font-size: 0.9em; } /* <-- CORREÇÃO APLICADA */
-    .status-text { font-size: 0.75em; }
-}
-
 /* --- Estilos para a Tela de Seleção de Tempo --- */
 
 .selection-title {
@@ -163,11 +163,13 @@ h1 {
     font-weight: 600;
     color: var(--text-color-light);
     margin-bottom: 10px;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
 }
 
 .charger-highlight {
     color: var(--accent-color);
     font-weight: 700;
+    text-shadow: 0 0 10px var(--glow-accent); /* Brilho neon */
 }
 
 .time-options {
@@ -182,7 +184,7 @@ h1 {
 }
 
 .time-option-btn {
-    background: linear-gradient(145deg, var(--primary-color), #3e8e41);
+    background: linear-gradient(145deg, var(--primary-color), #00A381); /* Gradiente para o botão */
     color: var(--text-color-light);
     border: none;
     border-radius: 15px;
@@ -195,26 +197,28 @@ h1 {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 20px rgba(0, 255, 194, 0.3); /* Brilho neon */
+    border: 1px solid var(--primary-color);
 }
 
 .time-option-btn:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(76, 175, 80, 0.5);
+    box-shadow: 0 0 30px var(--glow-primary); /* Brilho mais intenso no hover */
     filter: brightness(1.1);
 }
 
 .time-option-btn .price {
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: rgba(0, 0, 0, 0.3); /* Fundo mais escuro */
     padding: 8px 15px;
     border-radius: 10px;
     font-size: 0.9em;
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
 }
 
 .back-btn {
     background: none;
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    color: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: rgba(255, 255, 255, 0.7);
     padding: 10px 20px;
     border-radius: 10px;
     cursor: pointer;
@@ -222,22 +226,13 @@ h1 {
     font-size: 1em;
     margin-top: 30px;
     transition: all 0.3s ease;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
 }
 
 .back-btn:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(255, 255, 255, 0.08);
     color: var(--text-color-light);
-}
-
-/* Ajustes responsivos para a nova tela */
-@media (max-width: 768px) {
-    .selection-title {
-        font-size: 1.5em;
-    }
-    .time-option-btn {
-        font-size: 1.2em;
-        padding: 15px;
-    }
+    box-shadow: 0 0 10px var(--glow-accent);
 }
 
 /* --- Estilos para a Tela de Pagamento e Confirmação --- */
@@ -247,11 +242,11 @@ h1 {
 }
 
 .qr-code-container {
-    background-color: white;
+    background-color: white; /* Mantido branco para contraste com QR Code */
     padding: 20px;
     border-radius: 15px;
     display: inline-block;
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 25px rgba(0, 255, 194, 0.4); /* Brilho neon ao redor do QR Code */
 }
 
 .qr-code-container img {
@@ -264,10 +259,11 @@ h1 {
     font-size: 1.1em;
     color: var(--accent-color);
     margin-top: 20px;
+    text-shadow: 0 0 10px var(--glow-accent);
 }
 
 .simulate-btn {
-    background: linear-gradient(145deg, var(--accent-color), #1b7bcd);
+    background: linear-gradient(145deg, var(--accent-color), #007BBF); /* Gradiente azul neon */
     color: var(--text-color-light);
     border: none;
     border-radius: 10px;
@@ -278,35 +274,58 @@ h1 {
     cursor: pointer;
     transition: all 0.3s ease;
     margin-top: 15px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 20px rgba(0, 191, 255, 0.4); /* Brilho neon azul */
 }
 
 .simulate-btn:hover {
     transform: translateY(-3px);
     filter: brightness(1.1);
+    box-shadow: 0 0 30px var(--glow-accent);
 }
 
 .confirmation-icon {
     font-size: 5em;
     color: var(--primary-color);
-    background-color: rgba(76, 175, 80, 0.1);
+    background-color: rgba(0, 255, 194, 0.1); /* Fundo sutil */
     width: 120px;
     height: 120px;
     line-height: 120px;
     border-radius: 50%;
     margin: 20px auto;
     border: 2px solid var(--primary-color);
+    box-shadow: 0 0 25px var(--glow-primary); /* Brilho neon no ícone */
 }
 
 .countdown-timer {
     margin-top: 30px;
     font-size: 1.5em;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
 }
 
-.countdown-timer span {
-    font-size: 2.5em;
-    font-weight: 700;
-    color: var(--primary-color);
-    display: block;
-    margin-top: 10px;
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .main-logo {
+        max-width: 250px;
+    }
+    h1 { font-size: 2.5em; }
+    .subtitle { font-size: 1em; }
+    .container { padding: 30px; }
+    .chargers-grid { grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 15px; }
+    .charger-card { padding: 20px 10px; min-height: 160px; }
+    .charger-icon { font-size: 2.8em; }
+    .charger-number { font-size: 1em; }
+    .status-text { font-size: 0.8em; gap: 5px; }
+    .status-indicator { width: 10px; height: 10px; }
+
+    .selection-title { font-size: 1.5em; }
+    .time-option-btn { font-size: 1.2em; padding: 15px; }
+    .qr-code-container img { width: 200px; height: 200px; }
+}
+
+@media (max-width: 480px) {
+    .main-logo {
+        max-width: 200px;
+    }
+    .charger-number { font-size: 0.9em; }
+    .status-text { font-size: 0.75em; }
 }
