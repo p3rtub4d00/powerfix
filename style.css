@@ -1,18 +1,19 @@
-/* Conteúdo de style.css - Tema Neon */
+/* Conteúdo de style.css - Tema Power Fix (Azul/Cinza) */
 
 :root {
-    --primary-color: #00FFC2; /* Verde água neon para disponível */
-    --secondary-color: #FF6B6B; /* Rosa/Vermelho para ocupado */
-    --accent-color: #00BFFF; /* Azul vibrante neon para destaque */
+    --primary-color: #007BFF; /* Azul principal da logo */
+    --secondary-color: #DC3545; /* Vermelho para ocupado/erros */
+    --accent-color: #6C757D; /* Cinza claro da logo */
     --text-color-dark: #333;
-    --text-color-light: #fff;
-    --bg-dark: #0a0a1a; /* Fundo mais escuro para realçar o neon */
+    --text-color-light: #f8f9fa; /* Branco levemente off-white */
+    --bg-dark: #121212; /* Fundo escuro profundo */
     --bg-light: #f0f2f5;
 
-    /* Cores de brilho neon */
-    --glow-primary: #00FFC2;
-    --glow-secondary: #FF6B6B;
-    --glow-accent: #00BFFF;
+    /* Cores adicionais para destaque e consistência */
+    --button-gradient-start: #0056b3; /* Azul mais escuro para gradiente */
+    --button-gradient-end: #007BFF;
+    --advantage-gradient-start: #ffc107; /* Amarelo/Dourado para vantagem */
+    --advantage-gradient-end: #ff8c00;
 }
 
 body {
@@ -23,21 +24,21 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: linear-gradient(135deg, var(--bg-dark), #05050f); /* Fundo ainda mais escuro */
+    background: linear-gradient(135deg, var(--bg-dark), #000000); /* Fundo bem escuro */
     color: var(--text-color-light);
     overflow: hidden;
 }
 
 .container {
-    background-color: rgba(0, 0, 0, 0.2); /* Fundo semi-transparente mais escuro */
+    background-color: rgba(255, 255, 255, 0.08); /* Fundo semi-transparente escuro */
     border-radius: 20px;
     padding: 40px;
-    box-shadow: 0 0 40px rgba(0, 255, 194, 0.2); /* Brilho leve neon no container */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     text-align: center;
     max-width: 900px;
     width: 95%;
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(0, 255, 194, 0.3); /* Borda neon sutil */
+    border: 1px solid rgba(255, 255, 255, 0.15); /* Borda sutil */
     animation: fadeIn 1s ease-out;
 }
 
@@ -46,26 +47,30 @@ body {
     to { opacity: 1; transform: translateY(0); }
 }
 
-.main-logo {
-    max-width: 300px; /* Ajuste o tamanho da logo conforme necessário */
+.main-logo-flat {
+    max-width: 280px; /* Tamanho ajustado da logo */
     height: auto;
-    margin-bottom: 20px;
-    filter: drop-shadow(0 0 15px var(--glow-primary)); /* Efeito de brilho na logo */
+    margin-bottom: 25px;
+    filter: drop-shadow(0 0 8px rgba(0, 123, 255, 0.5)); /* Sombra para realçar */
 }
 
-h1 { /* Mantido apenas para compatibilidade, mas agora usamos a imagem da logo */
+.main-logo-flat.small-logo { /* Para as páginas internas */
+    max-width: 200px;
+    margin-bottom: 15px;
+}
+
+h1 { /* Mantido apenas para compatibilidade */
     color: var(--primary-color);
     font-size: 3.5em;
     margin-bottom: 10px;
     letter-spacing: 2px;
-    text-shadow: 0 0 15px var(--glow-primary), 0 0 30px rgba(0, 255, 194, 0.4); /* Brilho neon no texto */
+    text-shadow: 0 0 10px rgba(0, 123, 255, 0.4);
 }
 
 .subtitle {
     font-size: 1.2em;
-    color: rgba(255, 255, 255, 0.9); /* Cor mais clara para o subtítulo */
+    color: rgba(255, 255, 255, 0.85);
     margin-bottom: 40px;
-    text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
 }
 
 .chargers-grid {
@@ -76,7 +81,7 @@ h1 { /* Mantido apenas para compatibilidade, mas agora usamos a imagem da logo *
 }
 
 .charger-card {
-    background-color: rgba(255, 255, 255, 0.08); /* Fundo mais escuro para os cards */
+    background-color: rgba(255, 255, 255, 0.05); /* Fundo mais sutil */
     border-radius: 15px;
     padding: 25px 15px;
     display: flex;
@@ -85,47 +90,45 @@ h1 { /* Mantido apenas para compatibilidade, mas agora usamos a imagem da logo *
     justify-content: space-between;
     cursor: pointer;
     transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     min-height: 180px;
 }
 
 .charger-card:hover {
     transform: translateY(-8px) scale(1.03);
-    box-shadow: 0 0 30px var(--glow-accent); /* Brilho neon no hover */
-    background-color: rgba(255, 255, 255, 0.12);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
 .charger-card.available {
     border-color: var(--primary-color);
-    box-shadow: 0 0 25px var(--glow-primary), 0 0 10px rgba(0, 255, 194, 0.6); /* Brilho neon mais intenso */
+    box-shadow: 0 0 20px rgba(0, 123, 255, 0.5); /* Brilho azul */
 }
 .charger-card.available .status-indicator {
     background-color: var(--primary-color);
-    box-shadow: 0 0 10px var(--glow-primary); /* Brilho no indicador */
 }
 
 .charger-card.occupied {
-    opacity: 0.7; /* Ligeiramente mais opaco */
+    opacity: 0.7;
     cursor: not-allowed;
     border-color: var(--secondary-color);
-    box-shadow: 0 0 15px var(--glow-secondary); /* Brilho neon vermelho */
+    box-shadow: 0 0 15px rgba(220, 53, 69, 0.4); /* Brilho vermelho */
 }
 .charger-card.occupied:hover {
     transform: none;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4), 0 0 10px var(--glow-secondary); /* Mantém brilho sutil */
-    background-color: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    background-color: rgba(255, 255, 255, 0.05);
 }
 .charger-card.occupied .status-indicator {
     background-color: var(--secondary-color);
-    box-shadow: 0 0 10px var(--glow-secondary);
 }
 
 .charger-icon {
     font-size: 3.5em;
     margin-bottom: 10px;
-    color: var(--accent-color);
-    text-shadow: 0 0 10px var(--glow-accent); /* Brilho nos ícones */
+    color: var(--primary-color); /* Ícone azul */
+    text-shadow: 0 0 8px rgba(0, 123, 255, 0.4);
 }
 
 .charger-number {
@@ -134,7 +137,6 @@ h1 { /* Mantido apenas para compatibilidade, mas agora usamos a imagem da logo *
     color: var(--text-color-light);
     margin-bottom: 5px;
     word-break: break-word;
-    text-shadow: 0 0 5px rgba(255, 255, 255, 0.4);
 }
 
 .status-text {
@@ -145,7 +147,6 @@ h1 { /* Mantido apenas para compatibilidade, mas agora usamos a imagem da logo *
     align-items: center;
     gap: 8px;
     margin-top: 5px;
-    text-shadow: 0 0 3px rgba(255, 255, 255, 0.2);
 }
 
 .status-indicator {
@@ -163,13 +164,11 @@ h1 { /* Mantido apenas para compatibilidade, mas agora usamos a imagem da logo *
     font-weight: 600;
     color: var(--text-color-light);
     margin-bottom: 10px;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
 }
 
 .charger-highlight {
-    color: var(--accent-color);
+    color: var(--primary-color); /* Destaque azul */
     font-weight: 700;
-    text-shadow: 0 0 10px var(--glow-accent); /* Brilho neon */
 }
 
 .time-options {
@@ -184,7 +183,7 @@ h1 { /* Mantido apenas para compatibilidade, mas agora usamos a imagem da logo *
 }
 
 .time-option-btn {
-    background: linear-gradient(145deg, var(--primary-color), #00A381); /* Gradiente para o botão */
+    background: linear-gradient(145deg, var(--button-gradient-start), var(--button-gradient-end));
     color: var(--text-color-light);
     border: none;
     border-radius: 15px;
@@ -197,27 +196,26 @@ h1 { /* Mantido apenas para compatibilidade, mas agora usamos a imagem da logo *
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0 0 20px rgba(0, 255, 194, 0.3); /* Brilho neon */
-    border: 1px solid var(--primary-color);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(0, 123, 255, 0.4);
 }
 
 .time-option-btn:hover {
     transform: translateY(-5px);
-    box-shadow: 0 0 30px var(--glow-primary); /* Brilho mais intenso no hover */
+    box-shadow: 0 8px 25px rgba(0, 123, 255, 0.4);
     filter: brightness(1.1);
 }
 
 .time-option-btn .price {
-    background-color: rgba(0, 0, 0, 0.3); /* Fundo mais escuro */
+    background-color: rgba(0, 0, 0, 0.2);
     padding: 8px 15px;
     border-radius: 10px;
     font-size: 0.9em;
-    box-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
 }
 
 .back-btn {
     background: none;
-    border: 1px solid rgba(255, 255, 255, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.3);
     color: rgba(255, 255, 255, 0.7);
     padding: 10px 20px;
     border-radius: 10px;
@@ -226,14 +224,31 @@ h1 { /* Mantido apenas para compatibilidade, mas agora usamos a imagem da logo *
     font-size: 1em;
     margin-top: 30px;
     transition: all 0.3s ease;
-    text-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
 }
 
 .back-btn:hover {
-    background-color: rgba(255, 255, 255, 0.08);
+    background-color: rgba(255, 255, 255, 0.05);
     color: var(--text-color-light);
-    box-shadow: 0 0 10px var(--glow-accent);
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.3);
 }
+
+/* --- Estilos para o botão Vantagem --- */
+.time-option-btn.advantage-btn {
+    background: linear-gradient(145deg, var(--advantage-gradient-start), var(--advantage-gradient-end));
+    color: var(--text-color-dark); /* Texto escuro para contraste no dourado */
+    font-weight: 700;
+    border: 1px solid rgba(255, 193, 7, 0.6);
+}
+
+.time-option-btn.advantage-btn:hover {
+    box-shadow: 0 0 30px rgba(255, 193, 7, 0.6);
+}
+
+.time-option-btn.advantage-btn .price {
+    background-color: rgba(0, 0, 0, 0.15);
+    color: var(--text-color-light);
+}
+
 
 /* --- Estilos para a Tela de Pagamento e Confirmação --- */
 
@@ -246,7 +261,7 @@ h1 { /* Mantido apenas para compatibilidade, mas agora usamos a imagem da logo *
     padding: 20px;
     border-radius: 15px;
     display: inline-block;
-    box-shadow: 0 0 25px rgba(0, 255, 194, 0.4); /* Brilho neon ao redor do QR Code */
+    box-shadow: 0 0 25px rgba(0, 123, 255, 0.4); /* Brilho azul */
 }
 
 .qr-code-container img {
@@ -257,13 +272,12 @@ h1 { /* Mantido apenas para compatibilidade, mas agora usamos a imagem da logo *
 
 .timer {
     font-size: 1.1em;
-    color: var(--accent-color);
+    color: var(--primary-color);
     margin-top: 20px;
-    text-shadow: 0 0 10px var(--glow-accent);
 }
 
 .simulate-btn {
-    background: linear-gradient(145deg, var(--accent-color), #007BBF); /* Gradiente azul neon */
+    background: linear-gradient(145deg, var(--button-gradient-start), var(--button-gradient-end));
     color: var(--text-color-light);
     border: none;
     border-radius: 10px;
@@ -274,38 +288,40 @@ h1 { /* Mantido apenas para compatibilidade, mas agora usamos a imagem da logo *
     cursor: pointer;
     transition: all 0.3s ease;
     margin-top: 15px;
-    box-shadow: 0 0 20px rgba(0, 191, 255, 0.4); /* Brilho neon azul */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
 .simulate-btn:hover {
     transform: translateY(-3px);
     filter: brightness(1.1);
-    box-shadow: 0 0 30px var(--glow-accent);
+    box-shadow: 0 0 20px rgba(0, 123, 255, 0.5);
 }
 
 .confirmation-icon {
     font-size: 5em;
     color: var(--primary-color);
-    background-color: rgba(0, 255, 194, 0.1); /* Fundo sutil */
+    background-color: rgba(0, 123, 255, 0.1);
     width: 120px;
     height: 120px;
     line-height: 120px;
     border-radius: 50%;
     margin: 20px auto;
     border: 2px solid var(--primary-color);
-    box-shadow: 0 0 25px var(--glow-primary); /* Brilho neon no ícone */
+    box-shadow: 0 0 25px rgba(0, 123, 255, 0.5);
 }
 
 .countdown-timer {
     margin-top: 30px;
     font-size: 1.5em;
-    text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
 }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-    .main-logo {
-        max-width: 250px;
+    .main-logo-flat {
+        max-width: 200px;
+    }
+    .main-logo-flat.small-logo {
+        max-width: 150px;
     }
     h1 { font-size: 2.5em; }
     .subtitle { font-size: 1em; }
@@ -323,26 +339,12 @@ h1 { /* Mantido apenas para compatibilidade, mas agora usamos a imagem da logo *
 }
 
 @media (max-width: 480px) {
-    .main-logo {
-        max-width: 200px;
+    .main-logo-flat {
+        max-width: 180px;
+    }
+    .main-logo-flat.small-logo {
+        max-width: 120px;
     }
     .charger-number { font-size: 0.9em; }
     .status-text { font-size: 0.75em; }
-}
-
-/* --- Estilos para o botão Vantagem --- */
-
-.time-option-btn.advantage-btn {
-    /* Um gradiente diferente para destacar a melhor oferta */
-    background: linear-gradient(145deg, #FFD700, #FFA500); 
-    color: #333; /* Texto mais escuro para melhor contraste */
-    font-weight: 700;
-}
-
-.time-option-btn.advantage-btn:hover {
-    box-shadow: 0 0 30px #FFD700; /* Brilho dourado no hover */
-}
-
-.time-option-btn.advantage-btn .price {
-    color: white; /* Cor do preço se destaca no fundo escuro */
 }
