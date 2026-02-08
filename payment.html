@@ -1,129 +1,199 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Power Fix - Pagamento</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <div class="container">
-        <img src="logo-powerfix.png" alt="Power Fix Logo" class="main-logo-simple small-logo">
-        <h2 class="selection-title">Efetue o Pagamento</h2>
-        <p class="instruction">Escaneie o código abaixo para iniciar a recarga.</p>
-
-        <div id="payment-message" class="status-message" role="status" aria-live="polite"></div>
-
-        <div class="payment-summary">
-            <h3>Resumo da recarga</h3>
-            <ul>
-                <li><strong>Carregador:</strong> <span id="summary-charger">-</span></li>
-                <li><strong>Tempo:</strong> <span id="summary-time">-</span></li>
-                <li><strong>Valor:</strong> <span id="summary-price">-</span></li>
-            </ul>
-        </div>
-
-        <div class="payment-details">
-            <div class="qr-code-container">
-                <img src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=PowerFix-Simulado" alt="QR Code de Pagamento">
-            </div>
-            <p class="timer">Você tem <span id="countdown">05:00</span> para realizar o pagamento.</p>
-        </div>
-
-        <button id="simulate-payment-btn" class="simulate-btn" type="button">Simular Pagamento Aprovado</button>
-
-        <button class="back-btn" type="button" onclick="window.history.back();">← Voltar</button>
-
-    </div>
-    <script>
-        const setPaymentMessage = (message, type = 'info') => {
-            const messageElement = document.getElementById('payment-message');
-            if (!messageElement) {
-                return;
-            }
-
-            messageElement.textContent = message;
-            messageElement.classList.remove('info', 'error', 'success');
-            messageElement.classList.add('visible', type);
-
-            window.clearTimeout(setPaymentMessage.timeoutId);
-            setPaymentMessage.timeoutId = window.setTimeout(() => {
-                messageElement.classList.remove('visible');
-            }, 3500);
-        };
-
-        const formatPrice = (price) => {
-            if (!price) {
-                return '-';
-            }
-            const numericPrice = Number(price).toFixed(2);
-            return `R$ ${numericPrice.replace('.', ',')}`;
-        };
-
-        document.addEventListener('DOMContentLoaded', () => {
-            const params = new URLSearchParams(window.location.search);
-            const charger = params.get('charger');
-            const time = params.get('time');
-            const price = params.get('price');
-
-            const summaryCharger = document.getElementById('summary-charger');
-            const summaryTime = document.getElementById('summary-time');
-            const summaryPrice = document.getElementById('summary-price');
-
-            if (!charger || !time || !price) {
-                setPaymentMessage('Informações incompletas. Volte e selecione novamente.', 'error');
-            }
-
-            if (summaryCharger) {
-                summaryCharger.textContent = charger ? `Carregador ${charger}` : '-';
-            }
-
-            if (summaryTime) {
-                summaryTime.textContent = time ? `${time} minutos` : '-';
-            }
-
-            if (summaryPrice) {
-                summaryPrice.textContent = formatPrice(price);
-            }
-
-            let countdownSeconds = 5 * 60;
-            const countdownElement = document.getElementById('countdown');
-
-            const updateCountdown = () => {
-                const minutes = Math.floor(countdownSeconds / 60);
-                const seconds = countdownSeconds % 60;
-                if (countdownElement) {
-                    countdownElement.textContent = `${minutes.toString().padStart(2, '0')}:${seconds
-                        .toString()
-                        .padStart(2, '0')}`;
-                }
-
-                if (countdownSeconds <= 0) {
-                    clearInterval(countdownInterval);
-                    setPaymentMessage('Tempo para pagamento esgotado! Por favor, tente novamente.', 'error');
-                    window.setTimeout(() => {
-                        window.location.href = 'index.html';
-                    }, 1500);
-                } else {
-                    countdownSeconds--;
-                }
-            };
-
-            const countdownInterval = setInterval(updateCountdown, 1000);
-            updateCountdown();
-
-            const simulateButton = document.getElementById('simulate-payment-btn');
-            if (simulateButton) {
-                simulateButton.addEventListener('click', () => {
-                    clearInterval(countdownInterval);
-                    setPaymentMessage('Pagamento simulado com sucesso! Redirecionando...', 'success');
-                    window.setTimeout(() => {
-                        window.location.href = `confirmation.html?time=${time}`;
-                    }, 1200);
-                });
-            }
-        });
-    </script>
-</body>
-</html>
+ (cd "$(git rev-parse --show-toplevel)" && git apply --3way <<'EOF' 
+diff --git a/payment.html b/payment.html
+index 4717ceaa3d8a2f61c118c88cb8c5bbf47bb99451..49f171ce5f5a847f914aa16ad117afb7708b5eb8 100644
+--- a/payment.html
++++ b/payment.html
+@@ -1,61 +1,129 @@
+-<!DOCTYPE html>
+-<html lang="pt-BR">
+-<head>
+-    <meta charset="UTF-8">
+-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+-    <title>Power Fix - Pagamento</title>
+-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+-    <link rel="stylesheet" href="style.css">
+-</head>
+-<body>
+-    <div class="container">
+-        <img src="logo-powerfix.png" alt="Power Fix Logo" class="main-logo-simple small-logo">
+-        <h2 class="selection-title">Efetue o Pagamento</h2>
+-        <p class="instruction">Escaneie o código abaixo para iniciar a recarga.</p>
+-
+-        <div class="payment-details">
+-            <div class="qr-code-container">
+-                <img src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=PowerFix-Simulado" alt="QR Code de Pagamento">
+-            </div>
+-            <p class="timer">Você tem <span id="countdown">5:00</span> para realizar o pagamento.</p>
+-        </div>
+-
+-        <button id="simulate-payment-btn" class="simulate-btn">Simular Pagamento Aprovado</button>
+-        
+-        <button class="back-btn" onclick="window.history.back();">← Voltar</button>
+-
+-    </div>
+-    <script>
+-        document.addEventListener('DOMContentLoaded', () => {
+-            const params = new URLSearchParams(window.location.search);
+-            const time = params.get('time');
+-
+-            let countdownSeconds = 5 * 60; // 5 minutos
+-            const countdownElement = document.getElementById('countdown');
+-
+-            const updateCountdown = () => {
+-                const minutes = Math.floor(countdownSeconds / 60);
+-                const seconds = countdownSeconds % 60;
+-                countdownElement.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+-
+-                if (countdownSeconds <= 0) {
+-                    clearInterval(countdownInterval);
+-                    alert('Tempo para pagamento esgotado! Por favor, tente novamente.');
+-                    window.location.href = 'index.html';
+-                } else {
+-                    countdownSeconds--;
+-                }
+-            };
+-
+-            const countdownInterval = setInterval(updateCountdown, 1000);
+-            updateCountdown();
+-
+-            document.getElementById('simulate-payment-btn').addEventListener('click', function() {
+-                clearInterval(countdownInterval);
+-                alert('Pagamento simulado com sucesso! Redirecionando...');
+-                window.location.href = `confirmation.html?time=${time}`;
+-            });
+-        });
+-    </script>
+-</body>
+-</html>
++<!DOCTYPE html>
++<html lang="pt-BR">
++<head>
++    <meta charset="UTF-8">
++    <meta name="viewport" content="width=device-width, initial-scale=1.0">
++    <title>Power Fix - Pagamento</title>
++    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
++    <link rel="stylesheet" href="style.css">
++</head>
++<body>
++    <div class="container container-glass">
++        <img src="logo-powerfix.png" alt="Power Fix Logo" class="main-logo-simple small-logo">
++        <h2 class="selection-title">Efetue o Pagamento</h2>
++        <p class="instruction">Escaneie o código abaixo para iniciar a recarga.</p>
++
++        <div id="payment-message" class="status-message" role="status" aria-live="polite"></div>
++
++        <div class="payment-summary">
++            <h3>Resumo da recarga</h3>
++            <ul>
++                <li><strong>Carregador:</strong> <span id="summary-charger">-</span></li>
++                <li><strong>Tempo:</strong> <span id="summary-time">-</span></li>
++                <li><strong>Valor:</strong> <span id="summary-price">-</span></li>
++            </ul>
++        </div>
++
++        <div class="payment-details">
++            <div class="qr-code-container">
++                <img src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=PowerFix-Simulado" alt="QR Code de Pagamento">
++            </div>
++            <p class="timer">Você tem <span id="countdown">05:00</span> para realizar o pagamento.</p>
++        </div>
++
++        <button id="simulate-payment-btn" class="simulate-btn" type="button">Simular Pagamento Aprovado</button>
++
++        <button class="back-btn" type="button" onclick="window.history.back();">← Voltar</button>
++
++    </div>
++    <script>
++        const setPaymentMessage = (message, type = 'info') => {
++            const messageElement = document.getElementById('payment-message');
++            if (!messageElement) {
++                return;
++            }
++
++            messageElement.textContent = message;
++            messageElement.classList.remove('info', 'error', 'success');
++            messageElement.classList.add('visible', type);
++
++            window.clearTimeout(setPaymentMessage.timeoutId);
++            setPaymentMessage.timeoutId = window.setTimeout(() => {
++                messageElement.classList.remove('visible');
++            }, 3500);
++        };
++
++        const formatPrice = (price) => {
++            if (!price) {
++                return '-';
++            }
++            const numericPrice = Number(price).toFixed(2);
++            return `R$ ${numericPrice.replace('.', ',')}`;
++        };
++
++        document.addEventListener('DOMContentLoaded', () => {
++            const params = new URLSearchParams(window.location.search);
++            const charger = params.get('charger');
++            const time = params.get('time');
++            const price = params.get('price');
++
++            const summaryCharger = document.getElementById('summary-charger');
++            const summaryTime = document.getElementById('summary-time');
++            const summaryPrice = document.getElementById('summary-price');
++
++            if (!charger || !time || !price) {
++                setPaymentMessage('Informações incompletas. Volte e selecione novamente.', 'error');
++            }
++
++            if (summaryCharger) {
++                summaryCharger.textContent = charger ? `Carregador ${charger}` : '-';
++            }
++
++            if (summaryTime) {
++                summaryTime.textContent = time ? `${time} minutos` : '-';
++            }
++
++            if (summaryPrice) {
++                summaryPrice.textContent = formatPrice(price);
++            }
++
++            let countdownSeconds = 5 * 60;
++            const countdownElement = document.getElementById('countdown');
++
++            const updateCountdown = () => {
++                const minutes = Math.floor(countdownSeconds / 60);
++                const seconds = countdownSeconds % 60;
++                if (countdownElement) {
++                    countdownElement.textContent = `${minutes.toString().padStart(2, '0')}:${seconds
++                        .toString()
++                        .padStart(2, '0')}`;
++                }
++
++                if (countdownSeconds <= 0) {
++                    clearInterval(countdownInterval);
++                    setPaymentMessage('Tempo para pagamento esgotado! Por favor, tente novamente.', 'error');
++                    window.setTimeout(() => {
++                        window.location.href = 'index.html';
++                    }, 1500);
++                } else {
++                    countdownSeconds--;
++                }
++            };
++
++            const countdownInterval = setInterval(updateCountdown, 1000);
++            updateCountdown();
++
++            const simulateButton = document.getElementById('simulate-payment-btn');
++            if (simulateButton) {
++                simulateButton.addEventListener('click', () => {
++                    clearInterval(countdownInterval);
++                    setPaymentMessage('Pagamento simulado com sucesso! Redirecionando...', 'success');
++                    window.setTimeout(() => {
++                        window.location.href = `confirmation.html?time=${time}`;
++                    }, 1200);
++                });
++            }
++        });
++    </script>
++</body>
++</html>
+ 
+EOF
+)
