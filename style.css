@@ -61,16 +61,12 @@ body {
     to { opacity: 1; transform: translateY(0); }
 }
 
-.main-logo-simple {
-    max-width: 200px; /* Tamanho padrão da logo */
-    height: auto;
-    margin-bottom: 25px;
-    transition: max-width 0.3s ease;
-}
-
-.main-logo-simple.small-logo {
-    max-width: 150px;
-    margin-bottom: 15px;
+.system-title {
+    font-size: clamp(2rem, 3.4vw, 2.8rem);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
 }
 
 .subtitle, .instruction {
@@ -157,6 +153,51 @@ body {
     padding: 20px;
     border: 1px solid rgba(148, 163, 184, 0.2);
     box-shadow: inset 0 0 0 1px rgba(59, 130, 246, 0.05);
+}
+
+.modal {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+    z-index: 10;
+}
+
+.modal.is-open {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.65);
+    backdrop-filter: blur(6px);
+}
+
+.modal-content {
+    position: relative;
+    width: min(720px, 100%);
+    max-height: 90vh;
+    overflow-y: auto;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    box-shadow: 0 24px 48px var(--card-shadow);
+    border-radius: 24px;
+    padding: 32px;
+    text-align: center;
+    z-index: 1;
+}
+
+.modal-actions {
+    margin-top: 16px;
+    display: flex;
+    justify-content: center;
 }
 
 /* Chargers Grid */
@@ -426,10 +467,6 @@ body {
     .container {
         max-width: 1100px;
         padding: 48px;
-    }
-
-    .main-logo-simple {
-        max-width: 240px;
     }
 
     .home-layout {
