@@ -5,7 +5,7 @@
     --secondary-color: #DC3545; /* Vermelho para ocupado */
     --success-color: #28A745; /* Verde para disponível/sucesso */
     --accent-color: #6C757D; /* Cinza para textos secundários */
-    
+
     --bg-light: #F8F9FA; /* Fundo off-white */
     --text-dark: #212529; /* Texto principal escuro */
     --text-muted: #6C757D; /* Texto secundário */
@@ -20,6 +20,10 @@
 
     --advantage-bg: #FFC107; /* Amarelo/Dourado para vantagem */
     --advantage-text: #212529; /* Texto escuro no dourado */
+
+    --message-info: #E8F1FF;
+    --message-success: #E9F7EF;
+    --message-error: #FDECEA;
 }
 
 body {
@@ -71,10 +75,40 @@ body {
     margin-bottom: 30px;
 }
 
+.status-message {
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    padding: 12px 16px;
+    border-radius: 12px;
+    font-size: 0.95em;
+    margin-bottom: 20px;
+}
+
+.status-message.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.status-message.info {
+    background-color: var(--message-info);
+    color: var(--primary-color);
+}
+
+.status-message.success {
+    background-color: var(--message-success);
+    color: var(--success-color);
+}
+
+.status-message.error {
+    background-color: var(--message-error);
+    color: var(--secondary-color);
+}
+
 /* Chargers Grid */
 .chargers-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* Padrão de 2 colunas para mobile */
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
     gap: 15px;
     margin-top: 20px;
 }
@@ -92,6 +126,12 @@ body {
     box-shadow: 0 5px 15px var(--card-shadow);
     border: 1px solid rgba(0, 0, 0, 0.05);
     min-height: 150px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.charger-card:focus-visible {
+    outline: 3px solid rgba(0, 123, 255, 0.4);
+    outline-offset: 4px;
 }
 
 .charger-card:hover {
@@ -102,6 +142,7 @@ body {
 .charger-card.available {
     border-color: var(--success-color);
 }
+
 .charger-card.available .status-indicator {
     background-color: var(--success-color);
 }
@@ -111,10 +152,12 @@ body {
     cursor: not-allowed;
     border-color: var(--secondary-color);
 }
+
 .charger-card.occupied:hover {
     transform: none;
     box-shadow: 0 5px 15px var(--card-shadow);
 }
+
 .charger-card.occupied .status-indicator {
     background-color: var(--secondary-color);
 }
@@ -237,6 +280,27 @@ body {
     color: var(--advantage-text);
 }
 
+.payment-summary {
+    background-color: rgba(0, 0, 0, 0.02);
+    border-radius: 14px;
+    padding: 16px 18px;
+    text-align: left;
+    margin: 20px 0;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.payment-summary h3 {
+    margin: 0 0 10px;
+    font-size: 1.05em;
+}
+
+.payment-summary ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 6px;
+}
 
 .payment-details {
     margin: 25px 0;
@@ -301,7 +365,6 @@ body {
     color: var(--text-dark);
 }
 
-
 /* --- Media Queries para Telas Maiores (TABLET) --- */
 @media (min-width: 768px) {
     .container {
@@ -311,10 +374,5 @@ body {
 
     .main-logo-simple {
         max-width: 350px; /* <<-- LOGO MAIOR */
-    }
-
-    .chargers-grid {
-        grid-template-columns: repeat(3, 1fr); /* 3 colunas */
-        gap: 25px; /* Mais espaço entre os cards */
     }
 }
