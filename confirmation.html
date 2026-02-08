@@ -1,23 +1,55 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Power Fix - Carregando</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <div class="container">
-        <img src="logo-powerfix.png" alt="Power Fix Logo" class="main-logo-simple small-logo">
-        <div class="confirmation-icon" aria-hidden="true">✔</div>
-        <h2 class="selection-title">Pagamento Aprovado!</h2>
-        <p class="instruction">Seu carregamento foi iniciado.</p>
-
-        <div class="countdown-timer">
-            <p>Você será redirecionado em <span id="redirect-countdown">8</span> segundos...</p>
-        </div>
-    </div>
-    <script src="confirmation.js" defer></script>
-</body>
-</html>
+ (cd "$(git rev-parse --show-toplevel)" && git apply --3way <<'EOF' 
+diff --git a/confirmation.html b/confirmation.html
+index f4f67f132f1ea6b3e7238656288338bd706ec969..2eb9ef203073ed6eeb94f6f10c12e0deb817a175 100644
+--- a/confirmation.html
++++ b/confirmation.html
+@@ -1,23 +1,23 @@
+-<!DOCTYPE html>
+-<html lang="pt-BR">
+-<head>
+-    <meta charset="UTF-8">
+-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+-    <title>Power Fix - Carregando</title>
+-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+-    <link rel="stylesheet" href="style.css">
+-</head>
+-<body>
+-    <div class="container">
+-        <img src="logo-powerfix.png" alt="Power Fix Logo" class="main-logo-simple small-logo">
+-        <div class="confirmation-icon">✔</div>
+-        <h2 class="selection-title">Pagamento Aprovado!</h2>
+-        <p class="instruction">Seu carregamento foi iniciado.</p>
+-
+-        <div class="countdown-timer">
+-            <p>Você será redirecionado em breve...</p>
+-        </div>
+-    </div>
+-    <script src="confirmation.js" defer></script>
+-</body>
+-</html>
++<!DOCTYPE html>
++<html lang="pt-BR">
++<head>
++    <meta charset="UTF-8">
++    <meta name="viewport" content="width=device-width, initial-scale=1.0">
++    <title>Power Fix - Carregando</title>
++    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
++    <link rel="stylesheet" href="style.css">
++</head>
++<body>
++    <div class="container container-glass">
++        <img src="logo-powerfix.png" alt="Power Fix Logo" class="main-logo-simple small-logo">
++        <div class="confirmation-icon" aria-hidden="true">✔</div>
++        <h2 class="selection-title">Pagamento Aprovado!</h2>
++        <p class="instruction">Seu carregamento foi iniciado.</p>
++
++        <div class="countdown-timer">
++            <p>Você será redirecionado em <span id="redirect-countdown">8</span> segundos...</p>
++        </div>
++    </div>
++    <script src="confirmation.js" defer></script>
++</body>
++</html>
+ 
+EOF
+)
