@@ -1,22 +1,116 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Power Fix - Estação de Carregamento</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <div class="container">
-        <img src="logo-powerfix.png" alt="Power Fix Logo" class="main-logo-simple">
-        <p class="subtitle">Sua energia rápida, onde você estiver!</p>
-        <p class="instruction">Escolha um carregador disponível para começar.</p>
-
-        <div id="status-message" class="status-message" role="status" aria-live="polite"></div>
-
-        <div class="chargers-grid" id="chargers-grid" aria-label="Lista de carregadores disponíveis"></div>
-    </div>
-    <script src="script.js" defer></script>
-</body>
-</html>
+ (cd "$(git rev-parse --show-toplevel)" && git apply --3way <<'EOF' 
+diff --git a/index.html b/index.html
+index 28cbe05a502c31ae66fb9c93144964aeb1ac601e..c0a9890cb987445abb902b90913c3b23a1c56d38 100644
+--- a/index.html
++++ b/index.html
+@@ -1,75 +1,32 @@
+-<!DOCTYPE html>
+-<html lang="pt-BR">
+-<head>
+-    <meta charset="UTF-8">
+-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+-    <title>Power Fix - Estação de Carregamento</title>
+-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+-    <link rel="stylesheet" href="style.css">
+-</head>
+-<body>
+-    <div class="container">
+-        <img src="logo-powerfix.png" alt="Power Fix Logo" class="main-logo-simple">
+-        <p class="subtitle">Sua energia rápida, onde você estiver!</p>
+-        <p class="instruction">Escolha um carregador disponível para começar.</p>
+-
+-        <div class="chargers-grid">
+-            
+-            <div class="charger-card available" data-charger-id="1">
+-                <span class="charger-icon">⚡</span>
+-                <div class="charger-number">Carregador 1</div>
+-                <div class="status-text">
+-                    <span class="status-indicator"></span>
+-                    Disponível
+-                </div>
+-            </div>
+-
+-            <div class="charger-card occupied" data-charger-id="2">
+-                <span class="charger-icon">⚡</span>
+-                <div class="charger-number">Carregador 2</div>
+-                <div class="status-text">
+-                    <span class="status-indicator"></span>
+-                    Ocupado
+-                </div>
+-            </div>
+-
+-            <div class="charger-card available" data-charger-id="3">
+-                <span class="charger-icon">⚡</span>
+-                <div class="charger-number">Carregador 3</div>
+-                <div class="status-text">
+-                    <span class="status-indicator"></span>
+-                    Disponível
+-                </div>
+-            </div>
+-
+-            <div class="charger-card available" data-charger-id="4">
+-                <span class="charger-icon">⚡</span>
+-                <div class="charger-number">Carregador 4</div>
+-                <div class="status-text">
+-                    <span class="status-indicator"></span>
+-                    Disponível
+-                </div>
+-            </div>
+-
+-            <div class="charger-card occupied" data-charger-id="5">
+-                <span class="charger-icon">⚡</span>
+-                <div class="charger-number">Carregador 5</div>
+-                <div class="status-text">
+-                    <span class="status-indicator"></span>
+-                    Ocupado
+-                </div>
+-            </div>
+-            
+-            <div class="charger-card available" data-charger-id="6">
+-                <span class="charger-icon">⚡</span>
+-                <div class="charger-number">Carregador 6</div>
+-                <div class="status-text">
+-                    <span class="status-indicator"></span>
+-                    Disponível
+-                </div>
+-            </div>
+-        </div>
+-    </div>
+-    <script src="script.js" defer></script>
+-</body>
+-</html>
++<!DOCTYPE html>
++<html lang="pt-BR">
++<head>
++    <meta charset="UTF-8">
++    <meta name="viewport" content="width=device-width, initial-scale=1.0">
++    <title>Power Fix - Estação de Carregamento</title>
++    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
++    <link rel="stylesheet" href="style.css">
++</head>
++<body>
++    <div class="container container-glass">
++        <div class="home-layout">
++            <section class="hero">
++                <img src="logo-powerfix.png" alt="Power Fix Logo" class="main-logo-simple">
++                <p class="subtitle">Sua energia rápida, onde você estiver!</p>
++                <p class="instruction">Escolha um carregador disponível para começar.</p>
++
++                <div id="status-message" class="status-message" role="status" aria-live="polite"></div>
++            </section>
++
++            <section class="chargers-panel" aria-label="Lista de carregadores disponíveis">
++                <div class="panel-header">
++                    <h2>Carregadores</h2>
++                    <span class="panel-badge">Tempo real</span>
++                </div>
++                <div class="chargers-grid" id="chargers-grid"></div>
++            </section>
++        </div>
++    </div>
++    <script src="script.js" defer></script>
++</body>
++</html>
+ 
+EOF
+)
