@@ -9,19 +9,30 @@
 </head>
 <body>
     <div class="container container-glass">
+        <header class="top-bar">
+            <div class="system-title" role="heading" aria-level="1">Power Fix</div>
+            <div class="language-selector" aria-label="Selecionar idioma">
+                <button class="lang-btn is-active" type="button" data-lang="pt">PT</button>
+                <button class="lang-btn" type="button" data-lang="en">EN</button>
+                <button class="lang-btn" type="button" data-lang="es">ES</button>
+            </div>
+        </header>
+
+        <div id="selection-summary" class="selection-summary" role="status" aria-live="polite" aria-hidden="true"></div>
+
         <div class="home-layout">
             <section class="hero">
-                <div class="system-title" role="heading" aria-level="1">Power Fix</div>
-                <p class="subtitle">Sua energia rápida, onde você estiver!</p>
-                <p class="instruction">Escolha um carregador disponível para começar.</p>
+                <p class="subtitle" data-i18n="subtitle">Sua energia rápida, onde você estiver!</p>
+                <p class="instruction" data-i18n="instruction">Escolha um carregador disponível para começar.</p>
+                <p class="availability" data-i18n="availability">Disponíveis agora: <span id="available-count">0</span></p>
 
                 <div id="status-message" class="status-message" role="status" aria-live="polite"></div>
             </section>
 
             <section class="chargers-panel" aria-label="Lista de carregadores disponíveis">
                 <div class="panel-header">
-                    <h2>Carregadores</h2>
-                    <span class="panel-badge">Tempo real</span>
+                    <h2 data-i18n="chargersTitle">Carregadores</h2>
+                    <span class="panel-badge" data-i18n="realtime">Tempo real</span>
                 </div>
                 <div class="chargers-grid" id="chargers-grid"></div>
             </section>
@@ -31,27 +42,27 @@
     <div class="modal" id="time-modal" role="dialog" aria-modal="true" aria-labelledby="time-modal-title" aria-hidden="true">
         <div class="modal-backdrop" data-close="time-modal"></div>
         <div class="modal-content">
-            <h2 id="time-modal-title" class="selection-title">Você selecionou o <span class="charger-highlight" id="selected-charger">Carregador X</span></h2>
-            <p class="instruction">Quanto tempo de carga você precisa?</p>
+            <h2 id="time-modal-title" class="selection-title" data-i18n="selectedCharger">Você selecionou o <span class="charger-highlight" id="selected-charger">Carregador X</span></h2>
+            <p class="instruction" data-i18n="timePrompt">Quanto tempo de carga você precisa?</p>
             <div id="selection-message" class="status-message" role="status" aria-live="polite"></div>
             <div class="time-options">
                 <button class="time-option-btn" data-time="10" data-price="2.50" type="button">
-                    <span class="time">Carga Rápida (10 min)</span>
+                    <span class="time" data-i18n="fastCharge">Carga Rápida (10 min)</span>
                     <span class="price">R$ 2,50</span>
                 </button>
 
                 <button class="time-option-btn" data-time="25" data-price="5.00" type="button">
-                    <span class="time">Carga Padrão (25 min)</span>
+                    <span class="time" data-i18n="standardCharge">Carga Padrão (25 min)</span>
                     <span class="price">R$ 5,00</span>
                 </button>
 
                 <button class="time-option-btn advantage-btn" data-time="50" data-price="7.50" type="button">
-                    <span class="time">Carga Vantagem (50 min)</span>
+                    <span class="time" data-i18n="valueCharge">Carga Vantagem (50 min)</span>
                     <span class="price">R$ 7,50</span>
                 </button>
             </div>
             <div class="modal-actions">
-                <button class="back-btn" type="button" data-close="time-modal">← Voltar</button>
+                <button class="back-btn" type="button" data-close="time-modal" data-i18n="back">← Voltar</button>
             </div>
         </div>
     </div>
@@ -59,17 +70,17 @@
     <div class="modal" id="payment-modal" role="dialog" aria-modal="true" aria-labelledby="payment-modal-title" aria-hidden="true">
         <div class="modal-backdrop" data-close="payment-modal"></div>
         <div class="modal-content">
-            <h2 id="payment-modal-title" class="selection-title">Efetue o Pagamento</h2>
-            <p class="instruction">Escaneie o código abaixo para iniciar a recarga.</p>
+            <h2 id="payment-modal-title" class="selection-title" data-i18n="paymentTitle">Efetue o Pagamento</h2>
+            <p class="instruction" data-i18n="paymentPrompt">Escaneie o código abaixo para iniciar a recarga.</p>
 
             <div id="payment-message" class="status-message" role="status" aria-live="polite"></div>
 
             <div class="payment-summary">
-                <h3>Resumo da recarga</h3>
+                <h3 data-i18n="summaryTitle">Resumo da recarga</h3>
                 <ul>
-                    <li><strong>Carregador:</strong> <span id="summary-charger">-</span></li>
-                    <li><strong>Tempo:</strong> <span id="summary-time">-</span></li>
-                    <li><strong>Valor:</strong> <span id="summary-price">-</span></li>
+                    <li><strong data-i18n="summaryCharger">Carregador:</strong> <span id="summary-charger">-</span></li>
+                    <li><strong data-i18n="summaryTime">Tempo:</strong> <span id="summary-time">-</span></li>
+                    <li><strong data-i18n="summaryPrice">Valor:</strong> <span id="summary-price">-</span></li>
                 </ul>
             </div>
 
@@ -77,12 +88,12 @@
                 <div class="qr-code-container">
                     <img src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=PowerFix-Simulado" alt="QR Code de Pagamento">
                 </div>
-                <p class="timer">Você tem <span id="countdown">05:00</span> para realizar o pagamento.</p>
+                <p class="timer" data-i18n="paymentTimer">Você tem <span id="countdown">05:00</span> para realizar o pagamento.</p>
             </div>
 
-            <button id="simulate-payment-btn" class="simulate-btn" type="button">Simular Pagamento Aprovado</button>
+            <button id="simulate-payment-btn" class="simulate-btn" type="button" data-i18n="simulatePayment">Simular Pagamento Aprovado</button>
             <div class="modal-actions">
-                <button class="back-btn" type="button" data-close="payment-modal">← Voltar</button>
+                <button class="back-btn" type="button" data-close="payment-modal" data-i18n="back">← Voltar</button>
             </div>
         </div>
     </div>
@@ -91,12 +102,21 @@
         <div class="modal-backdrop" data-close="confirmation-modal"></div>
         <div class="modal-content">
             <div class="confirmation-icon" aria-hidden="true">✔</div>
-            <h2 id="confirmation-modal-title" class="selection-title">Pagamento Aprovado!</h2>
-            <p class="instruction">Seu carregamento foi iniciado.</p>
+            <h2 id="confirmation-modal-title" class="selection-title" data-i18n="approvedTitle">Pagamento Aprovado!</h2>
+            <p class="instruction" data-i18n="approvedSubtitle">Seu carregamento foi iniciado.</p>
+
+            <div class="charging-status">
+                <p data-i18n="chargingRemaining">Tempo restante: <span id="charging-remaining">--:--</span></p>
+                <div class="charging-progress">
+                    <div id="charging-progress-bar" class="charging-progress-bar"></div>
+                </div>
+            </div>
 
             <div class="countdown-timer">
-                <p>Você será redirecionado em <span id="redirect-countdown">8</span> segundos...</p>
+                <p data-i18n="redirectCountdown">Você será redirecionado em <span id="redirect-countdown">8</span> segundos...</p>
             </div>
+
+            <button id="end-session-btn" class="end-session-btn" type="button" data-i18n="endSession">Encerrar sessão</button>
         </div>
     </div>
 
