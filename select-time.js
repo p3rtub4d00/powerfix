@@ -1,37 +1,61 @@
-// Conteúdo de select-time.js
+const STORAGE_SELECTED_KEY = 'powerfix-selection';
+
+const setSelectionMessage = (message, type = 'info') => {
+    const messageElement = document.getElementById('selection-message');
+    if (!messageElement) {
+        return;
+    }
+
+    messageElement.textContent = message;
+    messageElement.classList.remove('info', 'error', 'success');
+    messageElement.classList.add('visible', type);
+
+    window.clearTimeout(setSelectionMessage.timeoutId);
+    setSelectionMessage.timeoutId = window.setTimeout(() => {
+        messageElement.classList.remove('visible');
+    }, 3500);
+};
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Pega os parâmetros da URL
     const params = new URLSearchParams(window.location.search);
     const chargerId = params.get('charger');
 
-    // Se não houver ID do carregador, volta para a página inicial
     if (!chargerId) {
         window.location.href = 'index.html';
         return;
     }
 
-    // Atualiza o título da página com o número do carregador
     const titleElement = document.querySelector('.charger-highlight');
     if (titleElement) {
         titleElement.textContent = `Carregador ${chargerId}`;
     }
 
-    // Adiciona funcionalidade aos botões de tempo
     const timeOptionButtons = document.querySelectorAll('.time-option-btn');
     timeOptionButtons.forEach(button => {
         button.addEventListener('click', () => {
             const time = button.dataset.time;
             const price = button.dataset.price;
-            
-            // Redireciona para a tela de pagamento com todas as informações
+
+            localStorage.setItem(
+                STORAGE_SELECTED_KEY,
+                JSON.stringify({
+                    chargerId,
+                    time,
+                    price,
+                    selectedAt: new Date().toISOString(),
+                })
+            );
+
             window.location.href = `payment.html?charger=${chargerId}&time=${time}&price=${price}`;
         });
     });
 
-    // Funcionalidade do botão "Voltar"
+    setSelectionMessage('Escolha o tempo de carga ideal para você.', 'info');
+
     const backButton = document.querySelector('.back-btn');
-    backButton.addEventListener('click', () => {
-        window.location.href = 'index.html';
-    });
+    if (backButton) {
+        backButton.addEventListener('click', () => {
+            window.location.href = 'index.html';
+        });
+    }
 });
