@@ -13,25 +13,26 @@
         <h2 class="selection-title">Você selecionou o <span class="charger-highlight">Carregador X</span></h2>
         <p class="instruction">Quanto tempo de carga você precisa?</p>
 
+        <div id="selection-message" class="status-message" role="status" aria-live="polite"></div>
+
         <div class="time-options">
-            
-            <button class="time-option-btn" data-time="10" data-price="2.50">
+            <button class="time-option-btn" data-time="10" data-price="2.50" type="button">
                 <span class="time">Carga Rápida (10 min)</span>
                 <span class="price">R$ 2,50</span>
             </button>
-            
-            <button class="time-option-btn" data-time="25" data-price="5.00">
+
+            <button class="time-option-btn" data-time="25" data-price="5.00" type="button">
                 <span class="time">Carga Padrão (25 min)</span>
                 <span class="price">R$ 5,00</span>
             </button>
 
-            <button class="time-option-btn advantage-btn" data-time="50" data-price="7.50">
+            <button class="time-option-btn advantage-btn" data-time="50" data-price="7.50" type="button">
                 <span class="time">Carga Vantagem (50 min)</span>
                 <span class="price">R$ 7,50</span>
             </button>
         </div>
 
-        <button class="back-btn">← Voltar</button>
+        <button class="back-btn" type="button">← Voltar</button>
     </div>
     <script src="select-time.js" defer></script>
 </body>
