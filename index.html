@@ -11,7 +11,7 @@
     <div class="container container-glass">
         <div class="home-layout">
             <section class="hero">
-                <img src="logo-powerfix.png" alt="Power Fix Logo" class="main-logo-simple">
+                <div class="system-title" role="heading" aria-level="1">Power Fix</div>
                 <p class="subtitle">Sua energia rápida, onde você estiver!</p>
                 <p class="instruction">Escolha um carregador disponível para começar.</p>
 
@@ -27,6 +27,79 @@
             </section>
         </div>
     </div>
+
+    <div class="modal" id="time-modal" role="dialog" aria-modal="true" aria-labelledby="time-modal-title" aria-hidden="true">
+        <div class="modal-backdrop" data-close="time-modal"></div>
+        <div class="modal-content">
+            <h2 id="time-modal-title" class="selection-title">Você selecionou o <span class="charger-highlight" id="selected-charger">Carregador X</span></h2>
+            <p class="instruction">Quanto tempo de carga você precisa?</p>
+            <div id="selection-message" class="status-message" role="status" aria-live="polite"></div>
+            <div class="time-options">
+                <button class="time-option-btn" data-time="10" data-price="2.50" type="button">
+                    <span class="time">Carga Rápida (10 min)</span>
+                    <span class="price">R$ 2,50</span>
+                </button>
+
+                <button class="time-option-btn" data-time="25" data-price="5.00" type="button">
+                    <span class="time">Carga Padrão (25 min)</span>
+                    <span class="price">R$ 5,00</span>
+                </button>
+
+                <button class="time-option-btn advantage-btn" data-time="50" data-price="7.50" type="button">
+                    <span class="time">Carga Vantagem (50 min)</span>
+                    <span class="price">R$ 7,50</span>
+                </button>
+            </div>
+            <div class="modal-actions">
+                <button class="back-btn" type="button" data-close="time-modal">← Voltar</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="payment-modal" role="dialog" aria-modal="true" aria-labelledby="payment-modal-title" aria-hidden="true">
+        <div class="modal-backdrop" data-close="payment-modal"></div>
+        <div class="modal-content">
+            <h2 id="payment-modal-title" class="selection-title">Efetue o Pagamento</h2>
+            <p class="instruction">Escaneie o código abaixo para iniciar a recarga.</p>
+
+            <div id="payment-message" class="status-message" role="status" aria-live="polite"></div>
+
+            <div class="payment-summary">
+                <h3>Resumo da recarga</h3>
+                <ul>
+                    <li><strong>Carregador:</strong> <span id="summary-charger">-</span></li>
+                    <li><strong>Tempo:</strong> <span id="summary-time">-</span></li>
+                    <li><strong>Valor:</strong> <span id="summary-price">-</span></li>
+                </ul>
+            </div>
+
+            <div class="payment-details">
+                <div class="qr-code-container">
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=PowerFix-Simulado" alt="QR Code de Pagamento">
+                </div>
+                <p class="timer">Você tem <span id="countdown">05:00</span> para realizar o pagamento.</p>
+            </div>
+
+            <button id="simulate-payment-btn" class="simulate-btn" type="button">Simular Pagamento Aprovado</button>
+            <div class="modal-actions">
+                <button class="back-btn" type="button" data-close="payment-modal">← Voltar</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="confirmation-modal" role="dialog" aria-modal="true" aria-labelledby="confirmation-modal-title" aria-hidden="true">
+        <div class="modal-backdrop" data-close="confirmation-modal"></div>
+        <div class="modal-content">
+            <div class="confirmation-icon" aria-hidden="true">✔</div>
+            <h2 id="confirmation-modal-title" class="selection-title">Pagamento Aprovado!</h2>
+            <p class="instruction">Seu carregamento foi iniciado.</p>
+
+            <div class="countdown-timer">
+                <p>Você será redirecionado em <span id="redirect-countdown">8</span> segundos...</p>
+            </div>
+        </div>
+    </div>
+
     <script src="script.js" defer></script>
 </body>
 </html>
